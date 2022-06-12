@@ -1,13 +1,10 @@
 package DailyStuff;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class ReplitNexr3 {
+public class ReplitTaskCountLetterInString {
 
     public static void main(String[] args) {
         String str = "aaabbccc";
-        
+
         String temp;
         int letterCount;
         String result = "";
@@ -21,4 +18,5 @@ public class ReplitNexr3 {
 
         System.out.println(result);
     }
+
 }
