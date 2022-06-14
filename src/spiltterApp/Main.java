@@ -6,26 +6,24 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
+        //Scanner object to take various user inputs for the application
         Scanner scanner = new Scanner(System.in);
 
+        //Greeting message
         System.out.println("Welcome to Budget Planner!");
 
-
-        //Ask how many ppl in the budget planner?
+        //Asking how many ppl would be in this budget planner?
         System.out.println("How many people will split the budget?");
 
-        //Users DB
+        //Users DB - to store participants into DB(for now in this ArrayList)
         ArrayList<User> userList = prepareUserLists(scanner);
-
-
+                                  //
         //Expenses DB
         ArrayList<Expense> expenseList = new ArrayList<>();
 
         System.out.println("Added user count : " + userList.size());
 
         String [] optionList = prepareOptionList();
-
 
         while (true) {
 
@@ -42,8 +40,6 @@ public class Main {
             switch(request-1){
                 case 0:
 
-                    //ask expanse name,amount,user
-
                     Expense expense = new Expense();
 
                     System.out.println("Expense name: ");
@@ -55,11 +51,9 @@ public class Main {
 
                     System.out.println("Which user made this expense? Just type user id: ");
 
-                    //show all users: id:0 name: Ozzy
                     for(User user : userList){
                         System.out.println("id: " + userList.indexOf(user) + "name:" + user.name);
                     }
-
 
                     int userId = scanner.nextInt();
 
@@ -67,10 +61,7 @@ public class Main {
 
                     expense.user = user.name;
 
-
-
                     expenseList.add(expense);
-
                     break;
 
                 case 1:
@@ -85,7 +76,6 @@ public class Main {
                        if(chosenUser.name.equals(userName)){
                             myUser = chosenUser;
                             break;
-
                        }
                     }
 
@@ -93,12 +83,6 @@ public class Main {
                         System.out.println("User not exists!");
                         break;
                     }
-
-
-                    ///List Specific Person Expense
-                    //0 - expense amount : 100, expense by :0zzy
-                    //1 - expense amount : 100, expense by :0zzy
-                    //ozzy spent $ 200
 
                     int userExpenseAmount = 0;
                     int expenseCount=0;
@@ -116,7 +100,6 @@ public class Main {
                     }
 
                     System.out.println(myUser.name + " spent $ " + userExpenseAmount);
-
                     break;
 
 
@@ -126,6 +109,7 @@ public class Main {
                         System.out.println(i + " - expense amount:" + expenseList.get(i).amount + ", expense by:" + expenseList.get(i).user);
                     }
                     break;
+
                 case 3:
 
                     double totalAmount = 0;
@@ -137,49 +121,26 @@ public class Main {
                     }
 
                     makeSplit(totalAmount,splitList);
-
-
-
                     break;
                 case 4:
                     break;
                 case 5:
                     System.exit(0);
-
             }
-
         }
-
-
-
-
-
-
-
     }
 
     public static void makeSplit(double totalAmount, ArrayList<Split> splitList) {
 
         double amount = totalAmount /splitList.size();
 
-
-        //total 300
-        //each person : 100
-
         for(Split split : splitList){
-
             if(split.amount > amount){
                 System.out.println(split.userName + " needs to take back " + (split.amount - amount));
             }else{
                 System.out.println(split.userName + " need to give " + (-1 * (split.amount-amount)));
             }
-
         }
-
-
-
-
-
     }
 
     public static ArrayList<Split> calculateSplitByUser(ArrayList<Expense> expenseList) {
@@ -192,7 +153,6 @@ public class Main {
 
                 if(split != null){
                     split.amount += expense.amount;
-
                 }else{
                     Split willbeAdded = new Split();
                     willbeAdded.userName = expense.user;
@@ -200,16 +160,9 @@ public class Main {
                     splitList.add(willbeAdded);
                 }
 
-
-
-
             }
 
-
-
-
             return splitList;
-
     }
 
     public static Split existSplitList(String userName, ArrayList<Split> splitList) {
@@ -219,21 +172,25 @@ public class Main {
                 return split;
             }
         }
-
-        return null;   //break till 3:30 (5 review)
-
+        return null;
     }
 
-
+    /**
+     * Purpose: prepareUserLists method is responsible for recording users into DB and return it
+     * back to application whenever is needed
+     *
+     * @param scanner - Scanner Object for taking the input from user to create a user list
+     * @return this method returns userList object of ArrayList class in which added users will be stored
+     */
     public static ArrayList<User> prepareUserLists(Scanner scanner){
 
-        ArrayList<User> userList = new ArrayList<>();
+        ArrayList<User> userList = new ArrayList<>(); // created an ArrayList instance to collect users
 
-        int userCount = scanner.nextInt();
+        int userCount = scanner.nextInt(); //Asking how many participants will be there in this budgeting plan
 
         for(int i=0;i<userCount;i++) {
 
-            User user = new User();
+            User user = new User(); // this object will be used to store participants information
 
             System.out.println("Name: ");
             user.name = scanner.next();
@@ -241,19 +198,23 @@ public class Main {
             System.out.println("Email: ");
             user.email = scanner.next();
 
-            userList.add(user);
+            userList.add(user); // each iteration one participant information will be stored into this user obj
 
         }
 
-        return userList;
-
+        return userList; //after desired amount of head count info is stored into user obj then it will be returned
     }
 
+    /**
+     * This is a method where all the possible options are stored.
+     * Isolating it into a method like this would be helpful in the case that we decided to update anything
+     * then we can make a such change within this method and rest of the application won't be impacted
+     *
+     * @return String Array
+     */
     public static String[] prepareOptionList(){
 
-
-
-                /*
+        /*
         Creating options
         1 : Make Expense
         2 : List Specific Person Expense
@@ -264,12 +225,7 @@ public class Main {
         */
 
         String[] optionList = {"Make Expense","List Specific Person Expense","List All Expenses","Make Split","List All Users","Close the budget"};
-
         return optionList;
-
     }
-
-
-
 }
 
