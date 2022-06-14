@@ -2,9 +2,7 @@ package spiltterApp;
 
 public class Expense {
 
+    public int amount;
     public String expenseName;
-
-    public double amount;
-
     public String user;
 }
