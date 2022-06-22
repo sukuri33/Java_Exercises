@@ -3,10 +3,10 @@ package Day25_Assignments.StudentTask;
 public class Student {
 
 
-    String name;
-    int age;
-    char gender;
-    String id;
+    public String name;
+    public int age;
+    public char gender;
+    public String id;
 
     public Student(String name, int age, char gender, String id) {
         this.name = name;
@@ -16,7 +16,7 @@ public class Student {
     }
 
     public void study() {
-
+        System.out.println(name+" is studying");
     }
 
     public String toString() {
