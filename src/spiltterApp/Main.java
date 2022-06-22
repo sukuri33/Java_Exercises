@@ -17,24 +17,27 @@ public class Main {
 
         //Users DB - to store participants into DB(for now in this ArrayList)
         ArrayList<User> userList = prepareUserLists(scanner);
-                                  //
+                                  //Method take intake from user to create the user list
+
         //Expenses DB
         ArrayList<Expense> expenseList = new ArrayList<>();
+        //Message for end user to inform how many users has been added.
+        System.err.println("You are successfully added "+userList.size()+" users into your list!");
+        //List of actions that user may take
+        String[] optionList = prepareOptionList();
 
-        System.out.println("Added user count : " + userList.size());
-
-        String [] optionList = prepareOptionList();
-
+        //This loop will sustain/ keep application live until user is done with it.
         while (true) {
-
+            //Message
             System.out.println("What would you like to do?");
-
+            //Printing the dropdown for actions user may take to choose from
             for(int i=0;i<optionList.length;i++){
 
-                System.out.println(optionList[i] + ":" + (i+1));
+                System.out.println(optionList[i] + ":" + (i+1));//added 1 to 'i' in order display 1st option as positive digit
 
             }
-
+            //once an action type is selected by providing its index number to this scanner object
+            //it will be passed to below switch case
             int request =  scanner.nextInt();
 
             switch(request-1){
@@ -59,7 +62,7 @@ public class Main {
 
                     User user = userList.get(userId);
 
-                    expense.user = user.name;
+                    expense.user = user.name;//Ozzy
 
                     expenseList.add(expense);
                     break;
@@ -180,7 +183,7 @@ public class Main {
      * back to application whenever is needed
      *
      * @param scanner - Scanner Object for taking the input from user to create a user list
-     * @return this method returns userList object of ArrayList class in which added users will be stored
+     * @return this method returns userList object of an ArrayList class in which added users will be stored
      */
     public static ArrayList<User> prepareUserLists(Scanner scanner){
 
@@ -188,14 +191,15 @@ public class Main {
 
         int userCount = scanner.nextInt(); //Asking how many participants will be there in this budgeting plan
 
+                    //3
         for(int i=0;i<userCount;i++) {
 
             User user = new User(); // this object will be used to store participants information
 
-            System.out.println("Name: ");
+            System.out.println("Name: "); //Shukur
             user.name = scanner.next();
 
-            System.out.println("Email: ");
+            System.out.println("Email: "); //Shukur@gmail.com
             user.email = scanner.next();
 
             userList.add(user); // each iteration one participant information will be stored into this user obj
