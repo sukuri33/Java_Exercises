@@ -3,12 +3,10 @@ package Day28_assignments.credentialsTask;
 public class Credentials {
     private String userName;
     private String passWord;
-
     public Credentials(String userName, String passWord) {
         setUserName(userName);
         setPassWord(passWord);
     }
-
     public String getUserName() {
         return userName;
     }
@@ -22,36 +20,33 @@ public class Credentials {
     }
 
     public void setPassWord(String passWord) {
-        if (isStrongPassword(passWord)){
+        if (isStrongPassword(passWord)) {
             this.passWord = passWord;
-        }else{
+        } else {
             System.out.println("Your password isn't strong enough!");
             System.exit(1);
         }
     }
 
-    private boolean isStrongPassword(String passWord){
+    private boolean isStrongPassword(String passWord) {
         boolean isStrong = false;
         int countOfLetter = 0;
         int countOfSpecialChar = 0;
         int countOfDigit = 0;
 
-        if (passWord.length() >= 8 || !passWord.contains(" ")){
+        if (passWord.length() >= 8 || !passWord.contains(" ")) {
             char[] eachChar = passWord.toCharArray();
             for (char c : eachChar) {
                 if (Character.isLetter(c))
                     countOfLetter++;
                 if (Character.isDigit(c))
                     countOfDigit++;
-                if (!Character.isLetter(c) && !Character.isDigit(c))
+                if (!Character.isLetterOrDigit(c))
                     countOfSpecialChar++;
             }
             if (countOfDigit > 0 && countOfLetter > 0 && countOfSpecialChar > 0)
                 isStrong = true;
-        }else{
-            isStrong = false;
         }
-
         return isStrong;
     }
 
