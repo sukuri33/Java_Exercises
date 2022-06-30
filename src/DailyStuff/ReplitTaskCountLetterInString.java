@@ -3,7 +3,7 @@ package DailyStuff;
 public class ReplitTaskCountLetterInString {
 
     public static void main(String[] args) {
-        String str = "aaabbccc";
+        String str = "abbccc";
 
         String temp;
         int letterCount;

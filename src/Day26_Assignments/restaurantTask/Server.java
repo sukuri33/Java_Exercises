@@ -16,6 +16,7 @@ public class Server extends Employee{
         this.hourlyRate = hourlyRate;
         this.isFullTime = isFullTime;
         this.hire_date = hire_date;
+
     }
 
     public void takeOrder(){
