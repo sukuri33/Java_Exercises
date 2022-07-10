@@ -12,6 +12,7 @@ public class InfosysInterviewRepeatedStr {
         String temp = "";
         int letterCount = 0;
         String result = "";
+        int counter = 0;
         while (str.length() != 0){
             String letter = str.substring(0,1);
             temp = str.replaceAll(letter,"");

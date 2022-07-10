@@ -1,8 +1,6 @@
 package DailyStuff;
 
-import java.util.Arrays;
-
-public class StringMethods {
+public class ReverseWordOrderInAString {
     public static void main(String[] args) {
         
         String str = "I love Java";
